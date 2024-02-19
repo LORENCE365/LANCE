@@ -1,0 +1,51 @@
+public class Gap {
+    public static void main(String[] args) {
+        int[] GivNum = {9, 4, 26, 26, 0, 0, 5, 20, 6, 25, 5};
+        System.out.println("Given order: ");
+        printArray(GivNum);
+
+        System.out.println("\nSorted order: ");
+        Sorted(GivNum);
+
+        System.out.println("\nThe Gap is: ");
+        Gapz(GivNum);
+    }
+
+    static void Sorted(int[] GivNum) {
+        int n = GivNum.length;
+        for (int i = 0; i < n - 1; i++) {
+            int minIndex = i;
+            for (int j = i + 1; j < n; j++) {
+                if (GivNum[j] < GivNum[minIndex]) {
+                    minIndex = j;
+                }
+            }
+
+            int temp = GivNum[i];
+            GivNum[i] = GivNum[minIndex];
+            GivNum[minIndex] = temp;
+        }
+
+        printArray(GivNum);
+    }
+
+    public static void printArray(int[] SorNum) {
+        for (int j = 0; j < SorNum.length; j++) {
+            System.out.print(SorNum[j] + " ");
+        }
+        System.out.println();
+    }
+
+    public static void Gapz(int[] SorNum) {
+        int xGap = 0;
+
+        for (int i = 1; i < SorNum.length; i++) {
+            int gap = SorNum[i] - SorNum[i - 1];
+            if (gap > xGap) {
+                xGap = gap;
+            }
+        }
+
+        System.out.println(xGap);
+    }
+}
